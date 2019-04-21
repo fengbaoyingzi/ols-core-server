@@ -19,12 +19,14 @@ public class TrainingCampController {
     private TrainingCampService trainingCampService;
 
     @GetMapping(value="/detail")
+    @CrossOrigin
     public TrainingCampDetail getDetail(String id) {
         return trainingCampService.getTrainingCampDetailById(id);
     }
 
 
     @GetMapping("list")
+    @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
     public List<TrainingCamp> list() {
         return trainingCampService.findAllTrainingCamp();
@@ -32,6 +34,7 @@ public class TrainingCampController {
 
 
     @PostMapping("creat")
+    @CrossOrigin
     @ResponseStatus(HttpStatus.CREATED)
     public String create(@RequestBody TrainingCamp trainingCamp) {
         try {
@@ -44,7 +47,8 @@ public class TrainingCampController {
 
     }
 
-    @PostMapping("delete")
+    @DeleteMapping("delete")
+    @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
     public String delete(@RequestBody String id) {
         try {
