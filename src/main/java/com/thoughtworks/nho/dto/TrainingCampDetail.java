@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -15,11 +16,11 @@ import java.util.List;
 public class TrainingCampDetail {
     String title;
     String desc;
-    String startTime;
+    Date startTime;
     List<Task> tasks;
     List<TrainingCampStudent> studentList;
 
-    public TrainingCampDetail(String title, String desc, String startTime, List<Task> tasks, List<TrainingCampStudent> studentList) {
+    public TrainingCampDetail(String title, String desc, Date startTime, List<Task> tasks, List<TrainingCampStudent> studentList) {
         this.title = title;
         this.desc = desc;
         this.startTime = startTime;

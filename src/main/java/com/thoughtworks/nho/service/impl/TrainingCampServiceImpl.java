@@ -12,13 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class TrainingCampServiceImpl implements TrainingCampService {
 
     @Autowired
-    private com.thoughtworks.nho.repository.TrainingCampRepository TrainingCampRepository;
+    private com.thoughtworks.nho.repository.TrainingCampRepository trainingCampRepository;
 
     @Autowired
     private TaskRepository taskRepository;
@@ -28,7 +29,7 @@ public class TrainingCampServiceImpl implements TrainingCampService {
 
     @Override
     public TrainingCampDetail getTrainingCampDetailById(String id) {
-        TrainingCamp trainingCamp = TrainingCampRepository.findOne(id);
+        TrainingCamp trainingCamp = trainingCampRepository.findOne(id);
         List<Task> taskList = taskRepository.findByTrainingCampId(id);
         List<Object[]> objectsList = studentRepository.findStudentList(id);
         List<TrainingCampStudent> studentList = buildTrainingCampStudentListFromObjectList(objectsList);
@@ -45,6 +46,17 @@ public class TrainingCampServiceImpl implements TrainingCampService {
             trainingCampStudentList.add(trainingCampStudent);
         }
         return trainingCampStudentList;
+    }
+
+    @Override
+    public List<TrainingCamp> findAllTrainingCamp() {
+        return trainingCampRepository.findAllByOrderByStartTimeDesc();
+    }
+
+    @Override
+    public void saveTrainCamp(TrainingCamp trainingCamp) {
+        trainingCamp.setStartTime(new Date());
+        trainingCampRepository.save(trainingCamp);
     }
 
 

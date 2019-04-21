@@ -1,5 +1,6 @@
 package com.thoughtworks.nho.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.thoughtworks.nho.util.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Table(name = "t_training_camp")
 @Entity
@@ -26,8 +28,8 @@ public class TrainingCamp {
 
     private String desc;
 
-    @Column
-    private String startTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone="GMT+8")
+    private Date startTime;
 
     public TrainingCamp() {
         id = StringUtils.uuid();
