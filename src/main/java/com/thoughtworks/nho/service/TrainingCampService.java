@@ -12,4 +12,6 @@ public interface TrainingCampService {
     List<TrainingCamp> findAllTrainingCamp();
 
     void saveTrainCamp(TrainingCamp trainingCamp);
+
+    void deleteTrainCamp(String id);
 }

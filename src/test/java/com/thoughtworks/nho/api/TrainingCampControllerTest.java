@@ -51,14 +51,14 @@ class TrainingCampControllerTest extends BaseControllerTest {
     }
 
 
-    @Test
-    void should_save_success() throws Exception {
-        TrainingCamp tr = TrainingCamp.builder().desc("dsadsa").title("dsamdlsajd").build();
-        mockMvc.perform(post("/api/training_camp/creat")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(tr)))
-                .andExpect(status().isCreated()).andExpect(content().string("success"));
-    }
+//    @Test
+//    void should_save_success() throws Exception {
+//        TrainingCamp tr = TrainingCamp.builder().desc("dsadsa").title("dsamdlsajd").build();
+//        mockMvc.perform(post("/api/training_camp/creat")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(new ObjectMapper().writeValueAsString(tr)))
+//                .andExpect(status().isCreated()).andExpect(content().string("success"));
+//    }
 
 
     @Test

@@ -26,10 +26,11 @@ public class TrainingCamp {
     @Column(unique = true)
     private String title;
 
+    @Column
     private String desc;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone="GMT+8")
-    private Date startTime;
+    @Column
+    private String startDate;
 
     public TrainingCamp() {
         id = StringUtils.uuid();

@@ -11,6 +11,7 @@ import com.thoughtworks.nho.service.TrainingCampService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,7 +34,7 @@ public class TrainingCampServiceImpl implements TrainingCampService {
         List<Task> taskList = taskRepository.findByTrainingCampId(id);
         List<Object[]> objectsList = studentRepository.findStudentList(id);
         List<TrainingCampStudent> studentList = buildTrainingCampStudentListFromObjectList(objectsList);
-        return new TrainingCampDetail(trainingCamp.getTitle(), trainingCamp.getDesc(), trainingCamp.getStartTime(), taskList, studentList);
+        return new TrainingCampDetail(trainingCamp.getTitle(), trainingCamp.getDesc(), trainingCamp.getStartDate(), taskList, studentList);
     }
 
     private List<TrainingCampStudent> buildTrainingCampStudentListFromObjectList(List<Object[]> objectsList){
@@ -50,13 +51,20 @@ public class TrainingCampServiceImpl implements TrainingCampService {
 
     @Override
     public List<TrainingCamp> findAllTrainingCamp() {
-        return trainingCampRepository.findAllByOrderByStartTimeDesc();
+        return trainingCampRepository.findAllByOrderByStartDateDesc();
     }
 
     @Override
     public void saveTrainCamp(TrainingCamp trainingCamp) {
-        trainingCamp.setStartTime(new Date());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = formatter.format(new Date());
+        trainingCamp.setStartDate(dateString);
         trainingCampRepository.save(trainingCamp);
+    }
+
+    @Override
+    public void deleteTrainCamp(String id) {
+        trainingCampRepository.delete(id);
     }
 
 

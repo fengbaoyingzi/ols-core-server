@@ -18,7 +18,7 @@ public class TrainingCampController {
     @Autowired
     private TrainingCampService trainingCampService;
 
-    @RequestMapping(value="/detail",method = RequestMethod.GET)
+    @GetMapping(value="/detail")
     public TrainingCampDetail getDetail(String id) {
         return trainingCampService.getTrainingCampDetailById(id);
     }
@@ -36,6 +36,19 @@ public class TrainingCampController {
     public String create(@RequestBody TrainingCamp trainingCamp) {
         try {
             trainingCampService.saveTrainCamp(trainingCamp);
+            return "success";
+        } catch (Exception e) {
+            log.error(e.toString());
+            return "error";
+        }
+
+    }
+
+    @PostMapping("delete")
+    @ResponseStatus(HttpStatus.OK)
+    public String delete(@RequestBody String id) {
+        try {
+            trainingCampService.deleteTrainCamp(id);
             return "success";
         } catch (Exception e) {
             log.error(e.toString());
