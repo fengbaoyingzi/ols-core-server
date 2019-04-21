@@ -18,7 +18,6 @@ import java.util.Date;
 @AllArgsConstructor
 public class TrainingCamp {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     private String id;
 
     @Column(unique = true)

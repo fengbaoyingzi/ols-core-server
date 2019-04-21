@@ -8,6 +8,7 @@ import com.thoughtworks.nho.dto.TrainingCampStudent;
 import com.thoughtworks.nho.repository.StudentRepository;
 import com.thoughtworks.nho.repository.TaskRepository;
 import com.thoughtworks.nho.service.TrainingCampService;
+import com.thoughtworks.nho.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,6 +60,7 @@ public class TrainingCampServiceImpl implements TrainingCampService {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateString = formatter.format(new Date());
         trainingCamp.setStartDate(dateString);
+        trainingCamp.setId(StringUtils.uuid());
         trainingCampRepository.save(trainingCamp);
     }
 
