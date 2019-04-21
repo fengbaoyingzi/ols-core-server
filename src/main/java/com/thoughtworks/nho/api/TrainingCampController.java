@@ -14,7 +14,7 @@ public class TrainingCampController {
     @Autowired
     private TrainingCampService trainingCampService;
 
-    @RequestMapping(value="/detail",method = RequestMethod.POST)
+    @RequestMapping(value="/detail",method = RequestMethod.GET)
     public TrainingCampDetail getDetail(String id) {
         return trainingCampService.getTrainingCampDetailById(id);
     }
